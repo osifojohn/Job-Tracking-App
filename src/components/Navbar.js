@@ -20,7 +20,7 @@ const Navbar = () => {
           <FaAlignLeft />
         </button>
         <div>
-          <h3 className="logo-text">dashboard</h3>
+          <h3 className="logo-text">Home</h3>
         </div>
         <div className="btn-container">
           <button
@@ -37,7 +37,7 @@ const Navbar = () => {
             <button
               type="button"
               className="dropdown-btn"
-              onClick={() => dispatch(logoutUser())}
+              onClick={() => dispatch(logoutUser("Logging out ..."))}
             >
               logout
             </button>
