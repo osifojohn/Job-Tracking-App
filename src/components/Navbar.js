@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../assets/wrappers/Navbar";
-import { toggleSidebar, logoutUser } from "../features/user/userSlice";
+import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import Logo from "./Logo";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSidebar, clearStore } from "../features/user/userSlice";
 
 const Navbar = () => {
-  const [showLogout, setShowlogout] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const toggle = () => {
     dispatch(toggleSidebar());
   };
+
   return (
     <Wrapper>
       <div className="nav-center">
@@ -20,24 +21,24 @@ const Navbar = () => {
           <FaAlignLeft />
         </button>
         <div>
-          <h3 className="logo-text">Home</h3>
+          <Logo />
+          <h3 className="logo-text">dashboard</h3>
         </div>
         <div className="btn-container">
           <button
             type="button"
             className="btn"
-            onClick={() => setShowlogout(!showLogout)}
+            onClick={() => setShowLogout(!showLogout)}
           >
             <FaUserCircle />
             {user?.name}
             <FaCaretDown />
           </button>
-
           <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
             <button
               type="button"
               className="dropdown-btn"
-              onClick={() => dispatch(logoutUser("Logging out ..."))}
+              onClick={() => dispatch(clearStore("Logging out..."))}
             >
               logout
             </button>
@@ -47,5 +48,4 @@ const Navbar = () => {
     </Wrapper>
   );
 };
-
 export default Navbar;
